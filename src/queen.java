@@ -39,7 +39,7 @@ public class queen {
             }
         }
 
-        // validasi error/kosong 
+        // validasi error/Kosong 
         catch (IOException e) {
             System.err.println("Error baca file: " + e.getMessage());
             return null;
@@ -109,7 +109,7 @@ public class queen {
         return regions;
     }
 
-    // tunjukin board
+    // print board
     public static void printboard(char[][] map) {
         System.out.println("\nBoard:");
         for(int i = 0; i < map.length; i++) {
@@ -120,7 +120,7 @@ public class queen {
         }
     }
 
-    // Helper Brute Force 
+    // Helper Validasi posisi Queens 
     public static boolean checkcolumn(Boolean[][] queen, int row, int col) {
         int size = queen.length;
         for (int i = 0; i < size; i++) {
@@ -190,24 +190,7 @@ public class queen {
         return checkcolumn(queen, row, col) && checkcolor(map,regions,queen,row,col) && checkdiagonal(queen,row,col);
     }
 
-    //exhaust search dan helper nya
-    public static List<int[]> allqueenplace(int size) {
-    List<int[]> result = new ArrayList<>();
-    int[] current = new int[size];
-    genqueenplace(result, current, 0, size);
-    return result;
-    }
-
-    private static void genqueenplace(List<int[]> result, int[] current,int row,int size) {
-        if (row == size) {
-            result.add(current.clone());
-            return;
-        }
-        for (int col = 0; col < size; col++) {
-            current[row] = col;
-            genqueenplace(result, current, row + 1, size);
-        }
-    }
+    //exhaust search
 
     public static boolean solution(char[][] map,Map<Character, List<Point>> regions, Boolean[][] queen) {
         int size = map.length;
@@ -247,7 +230,7 @@ public class queen {
                 System.out.println("Waktu   : " + duration + " ms");
 
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(100); // naikin kalo pengen lebih lama  
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
@@ -280,7 +263,7 @@ public class queen {
         return false;
     }
 
-    // tunjukin hasil
+    // tunjukin Hasil
     public static void printsolution(char[][] map, Boolean[][] queen) {
         int size = queen.length;
         System.out.println("\nSolusi:");
@@ -305,7 +288,7 @@ public class queen {
 
     // live update
     public static void clearscreen() {
-    System.out.print("\033[H\033[2J");  // hapus Terminal
+    System.out.print("\033[H\033[2J");  // Hapus terminal harusnya 
     System.out.flush();
     }
 
